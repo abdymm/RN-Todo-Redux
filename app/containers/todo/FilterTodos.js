@@ -8,33 +8,28 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 
-import { filterTodos } from "../actions/index";
-import Label from "../constants/Label";
+import { filterTodos } from "../../actions";
+import Label from "../../constants/Label";
 
 class FilterTodos extends Component {
-  filterTodos = status => {
-    console.log("STATUSSSS", Label.FILTER_SHOW_COMPLETE);
-    this.props.dispatch(filterTodos(status));
-  };
-
   render() {
     return (
       <View style={styles.container}>
         <TouchableOpacity
           style={[styles.buttonFilter, styles.buttonFilterComplete]}
-          onPress={() => this.filterTodos(Label.FILTER_SHOW_COMPLETE)}
+          onPress={() => this.props.filterTodos(Label.FILTER_SHOW_COMPLETE)}
         >
           <Text style={styles.textFilter}>Complete</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.buttonFilter, styles.buttonFilterALL]}
-          onPress={() => this.filterTodos(Label.FILTER_SHOW_ALL)}
+          onPress={() => this.props.filterTodos(Label.FILTER_SHOW_ALL)}
         >
           <Text style={styles.textFilter}>All</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.buttonFilter, styles.buttonFilterInComplete]}
-          onPress={() => this.filterTodos(Label.FILTER_SHOW_INCOMPLETE)}
+          onPress={() => this.props.filterTodos(Label.FILTER_SHOW_INCOMPLETE)}
         >
           <Text style={styles.textFilter}>Incomplete</Text>
         </TouchableOpacity>
@@ -42,7 +37,15 @@ class FilterTodos extends Component {
     );
   }
 }
-export default connect()(FilterTodos);
+const mapDispatchToProps = dispatch => {
+  return {
+    filterTodos: status => dispatch(filterTodos(status))
+  };
+};
+export default connect(
+  null,
+  mapDispatchToProps
+)(FilterTodos);
 
 const styles = StyleSheet.create({
   container: {

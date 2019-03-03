@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
-import TodoList from "../components/TodoList";
+import TodoList from "../../components/TodoList";
 
-import { toggleTodo } from "../actions";
+import { toggleTodo } from "../../actions";
 
-import Label from "../constants/Label";
+import Label from "../../constants/Label";
 
 const mapStateToProps = state => {
   let todos = state.todos;

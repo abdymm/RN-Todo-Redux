@@ -1,60 +1,63 @@
-import React from 'react';
-import { Platform } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import React from "react";
+import { Platform } from "react-native";
+import {
+  createStackNavigator,
+  createBottomTabNavigator
+} from "react-navigation";
 
-import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../views/HomeScreen';
-import LinksScreen from '../views/LinksScreen';
-import SettingsScreen from '../views/SettingsScreen';
+import TabBarIcon from "../components/TabBarIcon";
+import TodoScreen from "../containers/todo/TodoScreen";
+import ShoppingScreen from "../containers/shopping/ShoppingScreen";
+import SettingsScreen from "../containers/SettingsScreen";
+import CartScreen from "../containers/shopping/CartScreen";
 
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
+const TodoStack = createStackNavigator({
+  Todo: TodoScreen
 });
 
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+TodoStack.navigationOptions = {
+  tabBarLabel: "Todo",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
       name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+        Platform.OS === "ios" ? `ios-list${focused ? "-box" : ""}` : "md-list"
       }
     />
-  ),
+  )
 };
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
+const ShoppingStack = createStackNavigator({
+  Shopping: ShoppingScreen,
+  Cart: CartScreen
 });
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+ShoppingStack.navigationOptions = {
+  tabBarLabel: "Shop",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
+      name={Platform.OS === "ios" ? "ios-cart" : "md-cart"}
     />
-  ),
+  )
 };
 
 const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
+  Settings: SettingsScreen
 });
 
 SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+  tabBarLabel: "Settings",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
+      name={Platform.OS === "ios" ? "ios-options" : "md-options"}
     />
-  ),
+  )
 };
 
 export default createBottomTabNavigator({
-  HomeStack,
-  LinksStack,
-  SettingsStack,
+  ShoppingStack,
+  TodoStack,
+  SettingsStack
 });

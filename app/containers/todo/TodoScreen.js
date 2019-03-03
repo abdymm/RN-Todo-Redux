@@ -1,9 +1,8 @@
 import React from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import styled from "styled-components/native";
-import AddTodo from "../containers/AddTodo";
-import VisibleTodos from "../containers/VisibleTodos";
-import FilterTodos from "../containers/FilterTodos";
+import AddTodo from "./AddTodo";
+import VisibleTodos from "./VisibleTodos";
+import FilterTodos from "./FilterTodos";
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {

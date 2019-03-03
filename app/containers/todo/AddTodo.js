@@ -9,18 +9,11 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 
-import { addTodo } from "../actions";
+import { addTodo } from "../../actions";
 
 class AddTodo extends Component {
   state = {
     text: ""
-  };
-
-  addTodo = text => {
-    //update redux store
-    console.log(text);
-    this.props.dispatch(addTodo(text));
-    this.setState({ text: "" });
   };
 
   render() {
@@ -33,11 +26,11 @@ class AddTodo extends Component {
             value={this.state.text}
             placeholder="Whats going on.."
             style={styles.inputStatus}
-            onSubmitEditing={() => this.addTodo(this.state.text)}
+            onSubmitEditing={() => this.props.addTodo(this.state.text)}
           />
           <TouchableOpacity
             style={styles.buttonAddTodo}
-            onPress={() => this.addTodo(this.state.text)}
+            onPress={() => this.props.addTodo(this.state.text)}
           >
             <Text style={{ color: "#0366d6" }}>POST</Text>
           </TouchableOpacity>
@@ -46,7 +39,14 @@ class AddTodo extends Component {
     );
   }
 }
-export default connect()(AddTodo);
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      addTodo: (text) => dispatch(addTodo(text))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AddTodo);
 
 const styles = StyleSheet.create({
   container: {
