@@ -3,26 +3,32 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 class Products extends Component {
   render() {
-    return (
-      <View style={styles.container}>
-        {this.props.products.map(product => (
-          <View style={styles.list} key={product.id}>
-            <TouchableOpacity
-              key={product.id}
-              onPress={() => this.props.onPress(product)}
-            >
-              <Text
-                style={{
-                  fontSize: 18
-                }}
+    console.log("ProdComp", this.props.products);
+    console.log("ProdCompLength", this.props.products.length);
+    if (this.props.products.length > 0) {
+      return (
+        <View style={styles.container}>
+          {this.props.products.map(product => (
+            <View style={styles.list} key={product.id}>
+              <TouchableOpacity
+                key={product.id}
+                onPress={() => this.props.onPress(product)}
               >
-                {product.name}
-              </Text>
-            </TouchableOpacity>
-          </View>
-        ))}
-      </View>
-    );
+                <Text
+                  style={{
+                    fontSize: 18
+                  }}
+                >
+                  {product.name}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          ))}
+        </View>
+      );
+    } else {
+      return <View><Text>asd</Text></View>;
+    }
   }
 }
 export default Products;
