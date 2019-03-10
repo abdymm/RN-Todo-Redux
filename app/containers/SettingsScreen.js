@@ -1,14 +1,43 @@
-import React from 'react';
-import { ExpoConfigView } from '@expo/samples';
+import React, { Component } from "react";
+import { View, Text, StyleSheet } from "react-native";
 
-export default class SettingsScreen extends React.Component {
+import Products from "../components/shopping/Products";
+
+import { connect } from "react-redux";
+
+class SettingsScreen extends Component {
   static navigationOptions = {
-    title: 'app.json',
+    title: "app.json"
   };
 
   render() {
-    /* Go ahead and delete ExpoConfigView and replace it with your
-     * content, we just wanted to give you a quick view of your config */
-    return <ExpoConfigView />;
+    return (
+      <View style={styles.container}>
+        {this.props.cartItems.length > 0 ? (
+          <Products products={this.props.cartItems} />
+        ) : (
+          <Text>No items in your cart</Text>
+        )}
+      </View>
+    );
   }
 }
+
+const mapStateToProps = state => {
+  console.log("CARTSet", state);
+  return {
+    cartItems: state.cartItem
+  };
+};
+
+export default connect(mapStateToProps)(SettingsScreen);
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 15,
+    backgroundColor: "#fff"
+  }
+});
+
