@@ -5,7 +5,6 @@ import Products from "../../components/shopping/Products";
 import { connect } from "react-redux";
 
 import { games } from "../../constants/Data";
-import { ADD_TO_CART } from "../../actions/actionTypes";
 import { addToCart, fetchProducts } from "../../actions";
 
 class VisibleShopping extends Component {
@@ -14,6 +13,7 @@ class VisibleShopping extends Component {
   }
   render() {
     const { products, isFetching } = this.props.products;
+    console.log("initialdataaaaaa", this.props);
     console.log("Prodododoo", products);
     console.log("games-const", games);
     return (
@@ -38,7 +38,6 @@ class VisibleShopping extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log("Products", state.products);
   return {
     products: state.products
   };

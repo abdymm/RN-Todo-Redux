@@ -3,10 +3,6 @@ import { View, StyleSheet } from "react-native";
 
 import ShoppingCartIcon from "./ShoppingCartIcon";
 import VisibleShopping from "./VisibleShopping";
-import Products from "../../components/shopping/Products";
-
-import { games } from "../../constants/Data";
-import { ADD_TO_CART } from "../../actions/actionTypes";
 
 export default class ShoppingScreen extends React.Component {
   static navigationOptions = {
@@ -17,17 +13,11 @@ export default class ShoppingScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <VisibleShopping/>
+        <VisibleShopping />
       </View>
     );
   }
 }
-
-const mapDispatchToProps = dispatch => {
-  return {
-    addItemToCart: product => dispatch({ type: ADD_TO_CART, payload: product })
-  };
-};
 
 const styles = StyleSheet.create({
   container: {

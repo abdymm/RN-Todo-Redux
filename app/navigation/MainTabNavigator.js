@@ -8,7 +8,7 @@ import {
 import TabBarIcon from "../components/TabBarIcon";
 import TodoScreen from "../containers/todo/TodoScreen";
 import ShoppingScreen from "../containers/shopping/ShoppingScreen";
-import SettingsScreen from "../containers/SettingsScreen";
+import SettingsScreen from "../containers/setting/SettingsScreen";
 import CartScreen from "../containers/shopping/CartScreen";
 
 const TodoStack = createStackNavigator({
@@ -47,7 +47,7 @@ const SettingsStack = createStackNavigator({
 });
 
 SettingsStack.navigationOptions = {
-  tabBarLabel: "Settings",
+  tabBarLabel: "Fixture",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -57,7 +57,7 @@ SettingsStack.navigationOptions = {
 };
 
 export default createBottomTabNavigator({
+  SettingsStack,
   ShoppingStack,
-  TodoStack,
-  SettingsStack
+  TodoStack
 });
